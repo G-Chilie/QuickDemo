@@ -10,7 +10,7 @@ function UI() {}
 
 // Add Book To List
 UI.prototype.addBookToList = function(book){
-    const list = document.getElementById('book-list')
+    const list = document.getElementById('book-list'); 
     // Create tr element
     const row = document.createElement('tr');
     // Insert cols
@@ -20,6 +20,15 @@ UI.prototype.addBookToList = function(book){
         <td>${book.isbn}</td>
         <td><a href="#" class="delete">X<a></td>   
          `;
+
+         list.appendChild(row);
+}
+
+// Clear Fields
+UI.prototype.clearFields = function(){
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('isbn').value = '';
 }
 
 
@@ -36,9 +45,12 @@ document.getElementById('book-form').addEventListener('submit',
 
         // Instantiate  UI
         const ui = new UI();
-
+  
         // Add book to list
-        ui.addBookToList();
+        ui.addBookToList(book);
+
+        // Clear fields
+        ui.clearFields();
         
   e.preventDefault();  
 });
